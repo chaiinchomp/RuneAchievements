@@ -1,0 +1,16 @@
+[
+  {
+    "uuid": 0,
+    "name": "Placeholder 1",
+    "description": "a placeholder achievement",
+    "iconUrl": "https://oldschool.runescape.wiki/images/5/5c/Abyssal_whip.png?88741",
+    "completed": false
+  },
+  {
+    "uuid": 1,
+    "name": "Completed placeholder",
+    "description": "a completed achievement",
+    "iconUrl": "https://oldschool.runescape.wiki/images/f/f3/Ranger_boots.png?64679",
+    "completed": true
+  }
+]

@@ -1,14 +1,16 @@
 package com.runeachievements.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Achievement {
 
-    private final long uuid;
-    private final String name;
-    private final String description;
-    private final String iconUrl;
-    private final boolean isCompleted;
+    private long uuid;
+    private String name;
+    private String description;
+    private String iconUrl;
+    private boolean isCompleted;
 
 }
