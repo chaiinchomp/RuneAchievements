@@ -6,6 +6,7 @@ import com.runeachievements.model.Achievement;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -20,9 +21,7 @@ public class AchievementsController {
             File achievementData = new File(getClass().getClassLoader().getResource(ACHIEVEMENT_DATA).getFile());
             return mapper.readValue(achievementData, new TypeReference<List<Achievement>>(){});
         } catch (Exception e) {
-            // very bad no good lack of error handling
-            System.out.println(e.toString());
-            return Collections.emptyList();
+            throw new InternalException("Failed to load achievements: " + e);
         }
     }
 
