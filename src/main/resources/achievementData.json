@@ -1,16 +1,104 @@
 [
   {
-    "uuid": 0,
-    "name": "Placeholder 1",
-    "description": "a placeholder achievement",
-    "iconUrl": "https://oldschool.runescape.wiki/images/5/5c/Abyssal_whip.png?88741",
-    "completed": false
+    "uuid": "A_0",
+    "name": "Holy Grail of Footwear",
+    "description": "Get a pair of Ranger Boots from medium clue scrolls.",
+    "simpleCriteria": {
+      "taskId": "T_0",
+      "name": "Ranger Boots",
+      "iconUrl": "https://oldschool.runescape.wiki/images/f/f3/Ranger_boots.png?64679"
+    }
   },
   {
-    "uuid": 1,
-    "name": "Completed placeholder",
-    "description": "a completed achievement",
-    "iconUrl": "https://oldschool.runescape.wiki/images/f/f3/Ranger_boots.png?64679",
-    "completed": true
+    "uuid": "A_1",
+    "name": "Abyssal Novice",
+    "description": "Get one of the three Abyssal weapons.",
+    "series": {
+      "seriesId": "S_0",
+      "name": "Abyssal Weapons",
+      "length": 2
+    },
+    "seriesOrdinal": 1,
+    "subtaskCriteria": {
+      "requiredCount": 1,
+      "subtasks": [
+        {
+          "taskId": "T_1",
+          "name": "Abyssal Whip",
+          "iconUrl": "https://oldschool.runescape.wiki/images/5/5c/Abyssal_whip.png?88741"
+        },
+        {
+          "taskId": "T_2",
+          "name": "Abyssal Bludgeon",
+          "iconUrl": "https://oldschool.runescape.wiki/images/1/11/Abyssal_bludgeon.png?47377"
+        },
+        {
+          "taskId": "T_3",
+          "name": "Abyssal Dagger",
+          "iconUrl": "https://oldschool.runescape.wiki/images/f/fc/Abyssal_dagger.png?dd051"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "A_2",
+    "name": "Abyssal Master",
+    "description": "Get all three Abyssal weapons.",
+    "series": {
+      "seriesId": "S_0",
+      "name": "Abyssal Weapons",
+      "length": 2
+    },
+    "seriesOrdinal": 2,
+    "subtaskCriteria": {
+      "requiredCount": 3,
+      "subtasks": [
+        {
+          "taskId": "T_1",
+          "name": "Abyssal Whip",
+          "iconUrl": "https://oldschool.runescape.wiki/images/5/5c/Abyssal_whip.png?88741"
+        },
+        {
+          "taskId": "T_2",
+          "name": "Abyssal Bludgeon",
+          "iconUrl": "https://oldschool.runescape.wiki/images/1/11/Abyssal_bludgeon.png?47377"
+        },
+        {
+          "taskId": "T_3",
+          "name": "Abyssal Dagger",
+          "iconUrl": "https://oldschool.runescape.wiki/images/f/fc/Abyssal_dagger.png?dd051"
+        }
+      ]
+    }
+  },
+  {
+    "uuid": "A_3",
+    "name": "Habitual Sacrifice",
+    "description": "Defeat Zulrah 100 time.",
+    "numericCriteria": {
+      "taskId": "T_4",
+      "name": "Zulrah",
+      "iconUrl": "https://oldschool.runescape.wiki/images/e/e5/Pet_snakeling.png?91d82",
+      "count": 100
+    }
+  },
+  {
+    "uuid": "A_4",
+    "name": "A Tedious Task",
+    "description": "Complete the collection log.",
+    "metaCriteria": {
+      "subtasks": [
+        {
+          "achievementId": "A_0",
+          "name": "Holy Grail of Footwear",
+          "description": "Get a pair of Ranger Boots from medium clue scrolls."
+        },
+        {
+          "achievementId": "A_2",
+          "name": "Abyssal Master",
+          "description": "Get all three Abyssal weapons."
+        }
+      ]
+    }
   }
 ]

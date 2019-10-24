@@ -7,10 +7,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Achievement {
 
-    private long uuid;
+    private String uuid;
     private String name;
     private String description;
     private String iconUrl;
-    private boolean isCompleted;
+    private Series series;
+    private int seriesOrdinal;
+    private SimpleCriteria simpleCriteria;
+    private SubtaskCriteria subtaskCriteria;
+    private NumericCriteria numericCriteria;
+    private MetaCriteria metaCriteria;
 
 }
