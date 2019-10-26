@@ -1,0 +1,21 @@
+[
+  {
+    "uuid": "A_4",
+    "name": "A Tedious Task",
+    "description": "Complete the collection log.",
+    "metaCriteria": {
+      "subtasks": [
+        {
+          "achievementId": "A_0",
+          "name": "Holy Grail of Footwear",
+          "description": "Get a pair of Ranger Boots from medium clue scrolls."
+        },
+        {
+          "achievementId": "A_2",
+          "name": "Abyssal Master",
+          "description": "Get all three Abyssal weapons."
+        }
+      ]
+    }
+  }
+]

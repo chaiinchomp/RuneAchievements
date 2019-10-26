@@ -1,0 +1,12 @@
+[
+  {
+    "uuid": "A_0",
+    "name": "Holy Grail of Footwear",
+    "description": "Get a pair of Ranger Boots from medium clue scrolls.",
+    "simpleCriteria": {
+      "taskId": "T_0",
+      "name": "Ranger Boots",
+      "iconUrl": "https://oldschool.runescape.wiki/images/f/f3/Ranger_boots.png?64679"
+    }
+  }
+]
