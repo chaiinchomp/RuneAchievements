@@ -64,7 +64,7 @@
   {
     "uuid": "A_3",
     "name": "Habitual Sacrifice",
-    "description": "Defeat Zulrah 100 time.",
+    "description": "Defeat Zulrah 100 times.",
     "numericCriteria": {
       "taskId": "T_4",
       "name": "Zulrah",
