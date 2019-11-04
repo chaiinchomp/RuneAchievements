@@ -13,7 +13,6 @@ public class Achievement {
     private String iconUrl;
     private Series series;
     private int seriesOrdinal;
-    private SimpleCriteria simpleCriteria;
     private SubtaskCriteria subtaskCriteria;
     private NumericCriteria numericCriteria;
     private MetaCriteria metaCriteria;
