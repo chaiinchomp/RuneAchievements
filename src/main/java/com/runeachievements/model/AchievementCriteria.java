@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AchievementCriteria implements Criteria {
 
-    private String achievementId;
+    private String uuid;
     private String name;
     private String description;
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Series {
 
-    private String seriesId;
+    private String uuid;
     private String name;
     private int length;
 

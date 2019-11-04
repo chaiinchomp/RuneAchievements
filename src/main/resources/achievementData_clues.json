@@ -7,7 +7,7 @@
       "requiredCount": 1,
       "subtasks": [
         {
-          "taskId": "T_0",
+          "uuid": "T_0",
           "name": "Ranger Boots",
           "iconUrl": "https://oldschool.runescape.wiki/images/f/f3/Ranger_boots.png?64679"
         }

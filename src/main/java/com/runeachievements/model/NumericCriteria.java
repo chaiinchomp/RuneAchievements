@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NumericCriteria implements Criteria {
 
-    private String taskId;
+    private String uuid;
     private String name;
     private String iconUrl;
     private int count;
