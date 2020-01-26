@@ -1,5 +1,6 @@
 package com.runeachievements.api;
 
+import com.runeachievements.db.PostgresDbClient;
 import com.runeachievements.domain.AchievementsController;
 import com.runeachievements.model.Achievement;
 import com.runeachievements.model.Category;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AchievementsApi {
 
     private final AchievementsController controller;
+    private final PostgresDbClient dbClient;
 
     @GetMapping("/achievement")
     public ResponseEntity<List<Achievement>> getAchievements() {
@@ -25,6 +27,14 @@ public class AchievementsApi {
     @GetMapping("/achievement/category")
     public ResponseEntity<List<Achievement>> getAchievementsByCategory(final Category category) {
         return configureResponseEntity(controller.loadAchievements(category));
+    }
+
+    @GetMapping("/testEndpoint")
+    public ResponseEntity<String> getTestEndpoint() {
+        // just a quick stub for testing that everything is configured correctly
+
+        dbClient.testDbInsert();
+        return configureResponseEntity("test insert successful!");
     }
 
     private <T> ResponseEntity<T> configureResponseEntity(final T responseContent) {
