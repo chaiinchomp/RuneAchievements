@@ -17,14 +17,14 @@ CREATE TABLE "criteria" (
   "required_count" int
 );
 
-CREATE TABLE "task" (
+CREATE TABLE "tasks" (
   "uuid" varchar PRIMARY KEY,
   "name" varchar,
   "icon" varchar,
   "count" int
 );
 
-CREATE TABLE "category" (
+CREATE TABLE "categories" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar,
   "parent_category_id" int
@@ -54,9 +54,9 @@ CREATE TABLE "taskCriteria" (
   "task_id" varchar
 );
 
-ALTER TABLE "achievements" ADD FOREIGN KEY ("category") REFERENCES "category" ("id");
+ALTER TABLE "achievements" ADD FOREIGN KEY ("category") REFERENCES "categories" ("id");
 
-ALTER TABLE "category" ADD FOREIGN KEY ("parent_category_id") REFERENCES "category" ("id");
+ALTER TABLE "categories" ADD FOREIGN KEY ("parent_category_id") REFERENCES "categories" ("id");
 
 ALTER TABLE "achievementSeries" ADD FOREIGN KEY ("achievement_id") REFERENCES "achievements" ("uuid");
 
@@ -72,4 +72,4 @@ ALTER TABLE "metaCriteria" ADD FOREIGN KEY ("subcriteria_id") REFERENCES "criter
 
 ALTER TABLE "taskCriteria" ADD FOREIGN KEY ("criteria_id") REFERENCES "criteria" ("uuid");
 
-ALTER TABLE "taskCriteria" ADD FOREIGN KEY ("task_id") REFERENCES "task" ("uuid");
+ALTER TABLE "taskCriteria" ADD FOREIGN KEY ("task_id") REFERENCES "tasks" ("uuid");
