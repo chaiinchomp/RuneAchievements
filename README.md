@@ -2,6 +2,22 @@
  
 ## Local development
 
+### Intial setup
+
+The app is backed by a postgres DB and expects to find an environment variable `DATABASE_URL` pointing at 
+the DB instance in the format `postgres://username:password@host:port/dbname`.
+
+If you're running the app on a heroku instance, this variable will be configured for you automatically with 
+the correct credentials (assuming you have correctly 
+[provisioned a Postgres DB for your app](https://devcenter.heroku.com/articles/heroku-postgresql)). 
+
+For local development, you should point this at a locally-running postgres instance (see 
+[postgres setup docs](https://www.postgresql.org/docs/12/tutorial-createdb.html)). 
+
+In either case, you will want to initialize the DB with the schema found in `src/java/resources/schema.sql`.
+
+### Running locally
+
 1. Compile and start up spring boot app
 
     `mvn spring-boot:run`
