@@ -75,6 +75,26 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta</artifactId>
+            <version>3.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen</artifactId>
+            <version>3.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.2.3.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -86,6 +106,79 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>regex-properties</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>regex-properties</goal>
+                        </goals>
+                        <configuration>
+                            <regexPropertySettings>
+                                <regexPropertySetting>
+                                    <name>db.url</name>
+                                    <value>${env.DATABASE_URL}</value>
+                                    <regex>postgres://(\w+):(\w+)@([\w\-\.]+:\d+/\w+)</regex>
+                                    <replacement>jdbc:postgresql://$3?sslmode=require</replacement>
+                                    <failIfNoMatch>true</failIfNoMatch>
+                                </regexPropertySetting>
+                                <regexPropertySetting>
+                                    <name>db.username</name>
+                                    <value>${env.DATABASE_URL}</value>
+                                    <regex>postgres://(\w+):(\w+)@([\w\-\.]+:\d+/\w+)</regex>
+                                    <replacement>$1</replacement>
+                                    <failIfNoMatch>true</failIfNoMatch>
+                                </regexPropertySetting>
+                                <regexPropertySetting>
+                                    <name>db.password</name>
+                                    <value>${env.DATABASE_URL}</value>
+                                    <regex>postgres://(\w+):(\w+)@([\w\-\.]+:\d+/\w+)</regex>
+                                    <replacement>$2</replacement>
+                                    <failIfNoMatch>true</failIfNoMatch>
+                                </regexPropertySetting>
+                            </regexPropertySettings>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.12.3</version>
+
+                <executions>
+                    <execution>
+                        <id>jooq-codegen</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>${db.url}</url>
+                                <user>${db.username}</user>
+                                <password>${db.password}</password>
+                            </jdbc>
+                            <generator>
+                                <database>
+                                    <inputSchema>public</inputSchema>
+                                </database>
+                                <generate>
+                                    <instanceFields>true</instanceFields>
+                                    <pojos>true</pojos>
+                                    <daos>true</daos>
+                                    <springAnnotations>true</springAnnotations>
+                                </generate>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
