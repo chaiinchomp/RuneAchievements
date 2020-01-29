@@ -7,7 +7,7 @@
 # field values:
 # id (int): expect to be unique across achievements (not necessarily universally)
 # name (str) / description (str): self explanatory
-# itemRepresentation (str): doesn't matter isn't used in this script
+# itemRepresentation (str): name of icon to represent this achievement (usually an item id)
 # requiredCount (int): OPTIONAL how many of the tasks need to be checked off for the achievement to be complete
 # seriesOrdinal (int): OPTIONAL ordinal number of this achievement's place in its parent series
 # tasks (list:int): OPTIONAL list of task ids required to complete this achievement, comma separated
@@ -48,17 +48,18 @@ with open(args.file, 'r') as f:
         # achievement table
         name = segments[1].strip()
         description = segments[2].strip()
+        icon = segments[3].strip()
         req_count = segments[4] if segments[4] else 'DEFAULT'
         series_ord = segments[5] if segments[5] else 'DEFAULT'
         series = 'S_' + segments[7] if segments[7] else 'DEFAULT'
         category = segments[8]
         insert_achievements = 'INSERT INTO achievements ' \
-                              '(uuid, name, description, required_count, series_ordinal, series_id, category_id) ' \
+                              '(uuid, name, description, icon, required_count, series_ordinal, series_id, category_id) ' \
                               'VALUES ' \
-                              f'("{uuid}","{name}","{description}",{req_count},{series_ord},"{series}",{category}) ' \
-                              f'ON CONFLICT ({uuid}) DO UPDATE ' \
-                              f'SET name = "{name}", description = "{description}", required_count = {req_count}, ' \
-                              f'series_ordinal = {series_ord}, series_id = "{series}", category_id = {category};\n'
+                              f'("{uuid}","{name}","{icon}","{description}",{req_count},{series_ord},"{series}",{category}) ' \
+                              f'ON CONFLICT ({uuid}) DO UPDATE SET ' \
+                              f'name = "{name}", description = "{description}", icon = "{icon}", required_count = ' \
+                              f'{req_count}, series_ordinal = {series_ord}, series_id = "{series}", category_id = {category};\n'
         set_achievement = ''
         output_file.write(insert_achievements)
 

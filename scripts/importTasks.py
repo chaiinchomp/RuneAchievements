@@ -1,11 +1,12 @@
 # imports from a csv of task data and generates a SQL query to insert it
 #
 # expected format of csv:
-# id,name
+# id,name,itemRepresentation
 #
 # field values:
 # id (int): expect to be unique across tasks (not necessarily universally)
 # name (str): self explanatory
+# itemRepresentation (str): name of icon to represent this achievement (usually an item id)
 
 import argparse
 import time
@@ -33,5 +34,6 @@ with open(args.file, 'r') as f:
         segments = line.split(',')
         uuid = 'T_' + segments[0]
         name = segments[1].strip()
-        insert_tasks = f'INSERT INTO tasks (uuid, name) VALUES ("{uuid}","{name}");\n'
+        icon = segments[2].strip()
+        insert_tasks = f'INSERT INTO tasks (uuid, name, icon) VALUES ("{uuid}","{name}","{icon}");\n'
         output_file.write(insert_tasks)

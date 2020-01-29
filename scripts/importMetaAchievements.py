@@ -7,7 +7,7 @@
 # field values:
 # id (int): expect to be unique across achievements (not necessarily universally)
 # name (str) / description (str): self explanatory
-# itemRepresentation (str): doesn't matter isn't used in this script
+# itemRepresentation (str): name of icon to represent this achievement (usually an item id)
 # category (int): id of the category to sort this achievement into
 # achievements (list:int): OPTIONAL list of achievements ids required to complete this achievement, comma separated
 # meta_acheivements (list:int): OPTIONAL list of meta achievements ids to complete this achievement, comma separated
@@ -46,14 +46,15 @@ with open(args.file, 'r') as f:
         # achievement table
         name = segments[1].strip()
         description = segments[2].strip()
+        icon = segments[3].strip()
         req_count = len(sub_achievements)
         category = segments[4]
         insert_achievements = 'INSERT INTO achievements ' \
-                              '(uuid, name, description, required_count, category_id) ' \
+                              '(uuid, name, description, icon, required_count, category_id) ' \
                               'VALUES ' \
-                              f'("{uuid}","{name}","{description}",{req_count},{category}) ' \
+                              f'("{uuid}","{name}","{icon}","{description}",{req_count},{category}) ' \
                               f'ON CONFLICT ({uuid}) DO UPDATE ' \
-                              f'SET name = "{name}", description = "{description}", ' \
+                              f'SET name = "{name}", description = "{description}", icon = "{icon}", ' \
                               f'required_count = {req_count}, category_id = {category};\n'
         set_achievement = ''
         output_file.write(insert_achievements)
