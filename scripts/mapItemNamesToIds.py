@@ -1,25 +1,21 @@
-# reverses id -> item name mapping from static.runelite.net item cache to allow lookup of id by item name
-# outputs to a csv right now but this should probably go into a DB or something more queryable later ¯\_(ツ)_/¯
-# rerun this to regenerate the mapping whenever new items are added
+# takes a list of item names (one per line) and returns the equivalent list of their ids
+# if an item name isn't found, it will be returned as-is instead of replaced with an id
 
 import argparse
 import time
 import json
 
 parser = argparse.ArgumentParser(description='Map osrs item names to ids')
-parser.add_argument('-p', '--path',
-                    type=str,
-                    default='../../',
-                    help='path to static.runelite.net repo')
+parser.add_argument("mapping_file", help='file containing map of item names -> ids')
+parser.add_argument('item_names', help='file containing list of item names to be mapped')
 args = parser.parse_args()
 
-input_path = args.path + 'static.runelite.net/cache/item/names.json'
-output_dict = {}
-with open(input_path, 'r') as f:
-    runelite_data = json.load(f)
-    for (itemId, itemName) in runelite_data.items():
-        output_dict[itemName] = itemId
+with open(args.mapping_file, 'r') as f:
+    names_to_ids = json.load(f)
+    names_to_ids = {k.lower().strip(): v for k, v in names_to_ids.items()}
 
-output_path = './output/mapItemNamesToIds_' + str(int(time.time())) + '.txt'
-with open(output_path, 'w') as f:
-    json.dump(output_dict, f, sort_keys=True, indent=4)
+output_path = './output/itemIdMapping_' + str(int(time.time())) + '.txt'
+output_file = open(output_path, 'w')
+with open(args.item_names, 'r') as f:
+    for item_name in f:
+        output_file.write(names_to_ids.get(item_name.lower().strip(), item_name.lower().strip()) + '\n')
