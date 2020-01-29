@@ -3,7 +3,10 @@ CREATE TABLE "achievements" (
   "name" varchar,
   "description" varchar,
   "icon" varchar,
-  "category" int
+  "required_count" int,
+  "series_ordinal" int,
+  "series_id" varchar,
+  "category_id" int
 );
 
 CREATE TABLE "series" (
@@ -12,16 +15,10 @@ CREATE TABLE "series" (
   "length" int
 );
 
-CREATE TABLE "criteria" (
-  "uuid" varchar PRIMARY KEY,
-  "required_count" int
-);
-
 CREATE TABLE "tasks" (
   "uuid" varchar PRIMARY KEY,
   "name" varchar,
-  "icon" varchar,
-  "count" int
+  "icon" varchar
 );
 
 CREATE TABLE "categories" (
@@ -30,46 +27,28 @@ CREATE TABLE "categories" (
   "parent_category_id" int
 );
 
-CREATE TABLE "achievementSeries" (
+CREATE TABLE "metaAchievement" (
   "id" SERIAL PRIMARY KEY,
   "achievement_id" varchar,
-  "series_id" varchar
+  "subachievement_id" varchar
 );
 
-CREATE TABLE "achievementCriteria" (
+CREATE TABLE "achievementTasks" (
   "id" SERIAL PRIMARY KEY,
   "achievement_id" varchar,
-  "criteria_id" varchar
-);
-
-CREATE TABLE "metaCriteria" (
-  "id" SERIAL PRIMARY KEY,
-  "criteria_id" varchar,
-  "subcriteria_id" varchar
-);
-
-CREATE TABLE "taskCriteria" (
-  "id" SERIAL PRIMARY KEY,
-  "criteria_id" varchar,
   "task_id" varchar
 );
 
-ALTER TABLE "achievements" ADD FOREIGN KEY ("category") REFERENCES "categories" ("id");
+ALTER TABLE "achievements" ADD FOREIGN KEY ("series_id") REFERENCES "series" ("uuid");
+
+ALTER TABLE "achievements" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id");
 
 ALTER TABLE "categories" ADD FOREIGN KEY ("parent_category_id") REFERENCES "categories" ("id");
 
-ALTER TABLE "achievementSeries" ADD FOREIGN KEY ("achievement_id") REFERENCES "achievements" ("uuid");
+ALTER TABLE "metaAchievement" ADD FOREIGN KEY ("achievement_id") REFERENCES "achievements" ("uuid");
 
-ALTER TABLE "achievementSeries" ADD FOREIGN KEY ("series_id") REFERENCES "series" ("uuid");
+ALTER TABLE "metaAchievement" ADD FOREIGN KEY ("subachievement_id") REFERENCES "achievements" ("uuid");
 
-ALTER TABLE "achievementCriteria" ADD FOREIGN KEY ("achievement_id") REFERENCES "achievements" ("uuid");
+ALTER TABLE "achievementTasks" ADD FOREIGN KEY ("achievement_id") REFERENCES "achievements" ("uuid");
 
-ALTER TABLE "achievementCriteria" ADD FOREIGN KEY ("criteria_id") REFERENCES "criteria" ("uuid");
-
-ALTER TABLE "metaCriteria" ADD FOREIGN KEY ("criteria_id") REFERENCES "criteria" ("uuid");
-
-ALTER TABLE "metaCriteria" ADD FOREIGN KEY ("subcriteria_id") REFERENCES "criteria" ("uuid");
-
-ALTER TABLE "taskCriteria" ADD FOREIGN KEY ("criteria_id") REFERENCES "criteria" ("uuid");
-
-ALTER TABLE "taskCriteria" ADD FOREIGN KEY ("task_id") REFERENCES "tasks" ("uuid");
+ALTER TABLE "achievementTasks" ADD FOREIGN KEY ("task_id") REFERENCES "tasks" ("uuid");
