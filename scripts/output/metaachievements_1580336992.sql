@@ -920,7 +920,7 @@ INSERT INTO achievementTasks (achievement_id, subachievement_id) VALUES ("A_43",
 INSERT INTO achievementTasks (achievement_id, subachievement_id) VALUES ("A_43","A_728");
 INSERT INTO achievementTasks (achievement_id, subachievement_id) VALUES ("A_43","A_");
 
-INSERT INTO achievements (uuid, name, description, icon, required_count, category_id) VALUES ("A_81","A Tedious Task","3rd age helmet","Complete the collection log",5,3) ON CONFLICT (A_81) DO UPDATE SET name = "A Tedious Task", description = "Complete the collection log", icon = "3rd age helmet", required_count = 5, category_id = 3;
+INSERT INTO achievements (uuid, name, description, icon, required_count, category_id) VALUES ("A_81","A Tedious Task","10350","Complete the collection log",5,3) ON CONFLICT (A_81) DO UPDATE SET name = "A Tedious Task", description = "Complete the collection log", icon = "3rd age helmet", required_count = 5, category_id = 3;
 INSERT INTO achievementTasks (achievement_id, subachievement_id) VALUES ("A_81","A_9");
 INSERT INTO achievementTasks (achievement_id, subachievement_id) VALUES ("A_81","A_43");
 INSERT INTO achievementTasks (achievement_id, subachievement_id) VALUES ("A_81","A_40");
